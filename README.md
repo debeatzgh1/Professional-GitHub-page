@@ -7,140 +7,6 @@ Designed to attract buyers, learners, and collaborators.
 
 > **Empowering creators, students, and entrepreneurs** with AI-powered tools, side hustle ideas, and interactive learning resources.  
 > Explore free resources or go premium to unlock exclusive access, automation kits, and brand collaborations.
-
----
-
-<style>
-body {
-  font-family: 'Poppins', sans-serif;
-}
-
-.hero {
-  background: linear-gradient(135deg, #007bff, #00c6ff);
-  color: white;
-  padding: 3rem 1rem;
-  border-bottom-left-radius: 50px;
-  border-bottom-right-radius: 50px;
-  text-align: center;
-}
-
-.hero h1 {
-  font-size: 2.3rem;
-  margin-bottom: 0.5rem;
-}
-
-.hero p {
-  font-size: 1.1rem;
-  margin-bottom: 1.5rem;
-}
-
-.btn {
-  display: inline-block;
-  background: linear-gradient(135deg, #007bff, #00c6ff);
-  color: white;
-  padding: 10px 24px;
-  border-radius: 30px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.btn:hover {
-  transform: scale(1.05);
-  background: linear-gradient(135deg, #00c6ff, #007bff);
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  margin-top: 25px;
-}
-
-.card {
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  overflow: hidden;
-  text-align: center;
-  transition: all 0.3s ease;
-  padding-bottom: 15px;
-}
-
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-}
-
-.card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-}
-
-.card h3 {
-  color: #007bff;
-  margin: 10px 0 6px;
-}
-
-.card p {
-  color: #555;
-  font-size: 0.95rem;
-  padding: 0 15px;
-  margin-bottom: 10px;
-}
-
-.pricing {
-  background: #f9f9ff;
-  padding: 2.5rem 1rem;
-  border-radius: 20px;
-  margin: 40px 0;
-}
-
-.price-card {
-  background: #fff;
-  border-radius: 18px;
-  padding: 1.5rem;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  transition: 0.3s;
-}
-
-.price-card:hover {
-  transform: scale(1.03);
-}
-
-.price-card h2 {
-  color: #007bff;
-  font-size: 1.4rem;
-  margin-bottom: 10px;
-}
-
-.price {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #00c6ff;
-  margin-bottom: 10px;
-}
-
-footer {
-  background: #111;
-  color: #fff;
-  padding: 20px;
-  text-align: center;
-  border-top: 3px solid #007bff;
-}
-
-footer a {
-  color: #00c6ff;
-  text-decoration: none;
-  font-weight: bold;
-}
-</style>
-
----
-
-<div class="hero">
   <h1>💡 Welcome to Debeatzgh Digital Hub</h1>
   <p>AI-powered side hustles, learning tools, and digital kits — built for creators, students, and entrepreneurs.</p>
   <a href="https://debeatzgh1.github.io/Side-hustle-starter-kit-/" class="btn">🚀 Explore Free Starter Kit</a>
@@ -227,7 +93,7 @@ footer a {
     <h2>Pro Creator Pack</h2>
     <p class="price">$29</p>
     <p>Includes all starter features + personal brand website + AI prompts kit.</p>
-    <a href="https://www.socialcreator.com/debeatzgh/?s=314752" class="btn">🛒 Purchase</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSec8llbmfgq_2cVxpdk0M9zi2BtNUT4_IjqFVkbM1RCApV3Gw/viewform?embedded=true" class="btn">🛒 Purchase</a>
   </div>
 
   <div class="price-card">
