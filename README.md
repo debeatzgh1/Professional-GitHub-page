@@ -84,14 +84,14 @@ Designed to attract buyers, learners, and collaborators.
   
   <div class="price-card">
     <h2>Starter Access</h2>
-    <p class="price">$9</p>
+    <p class="price">¢50</p>
     <p>Access premium guides, AI templates, and business idea kits.</p>
-    <a href="https://www.socialcreator.com/debeatzgh" class="btn">💳 Buy Now</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSec8llbmfgq_2cVxpdk0M9zi2BtNUT4_IjqFVkbM1RCApV3Gw/viewform?usp=publish-editor" class="btn">💳 Buy Now</a>
   </div>
 
   <div class="price-card">
     <h2>Pro Creator Pack</h2>
-    <p class="price">$29</p>
+    <p class="price">¢100</p>
     <p>Includes all starter features + personal brand website + AI prompts kit.</p>
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSec8llbmfgq_2cVxpdk0M9zi2BtNUT4_IjqFVkbM1RCApV3Gw/viewform?embedded=true" class="btn">🛒 Purchase</a>
   </div>
