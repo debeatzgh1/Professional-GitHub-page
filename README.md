@@ -3,7 +3,7 @@
 Designed to attract buyers, learners, and collaborators.
 -->
 
-# 🚀 **Debeatzgh | AI Projects, Digital Tools & Online Business Hub**
+# 🚀 **Debeatzgh | AI Projects, Digital Tools & Online Business Hub** #[PAGES DOCS](https://docs.google.com/document/d/10iWz6wbpGEucS5SH57XlQIP4b0H80M4ydh7a0kebErI/edit?usp=drivesdk)
 
 > **Empowering creators, students, and entrepreneurs** with AI-powered tools, side hustle ideas, and interactive learning resources.  
 > Explore free resources or go premium to unlock exclusive access, automation kits, and brand collaborations.
