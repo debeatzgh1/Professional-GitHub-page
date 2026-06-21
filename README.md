@@ -1,198 +1,226 @@
-<!--
-⭐ Professional GitHub Page for Debeatzgh
-Designed to attract buyers, learners, and collaborators.
--->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gist Portal Launcher</title>
+    <style>
+        :root {
+            --notify-red: #ff3e3e;
+            --gist-blue: #58a6ff;
+            --glass-dark: rgba(13, 17, 23, 0.95);
+        }
 
-# 🚀 **Debeatzgh | AI Projects, Digital Tools & Online Business Hub** #[PAGES DOCS](https://docs.google.com/document/d/10iWz6wbpGEucS5SH57XlQIP4b0H80M4ydh7a0kebErI/edit?usp=drivesdk)
+        /* 1. FLOATING WRAPPER */
+        #notification-wrapper {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            align-items: center;
+            z-index: 9999;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-> **Empowering creators, students, and entrepreneurs** with AI-powered tools, side hustle ideas, and interactive learning resources.  
-> Explore free resources or go premium to unlock exclusive access, automation kits, and brand collaborations.
-  <h1>💡 Welcome to Debeatzgh Digital Hub</h1>
-  <p>AI-powered side hustles, learning tools, and digital kits — built for creators, students, and entrepreneurs.</p>
-  <a href="https://debeatzgh1.github.io/Side-hustle-starter-kit-/" class="btn">🚀 Explore Free Starter Kit</a>
-</div>
+        /* Shake Animation */
+        @keyframes bell-shake {
+            0%, 100% { transform: rotate(0); }
+            15% { transform: rotate(15deg); }
+            30% { transform: rotate(-15deg); }
+            45% { transform: rotate(10deg); }
+            60% { transform: rotate(-10deg); }
+        }
+        .shake { animation: bell-shake 0.6s ease-in-out; }
 
----
+        #gist-notifier {
+            width: 40px;
+            height: 40px;
+            background: var(--glass-dark);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            order: 2;
+            position: relative;
+        }
 
-## 🧠 **AI & Online Business Projects**
+        /* 2. TYPEWRITER BUBBLE */
+        #notify-bubble {
+            background: white;
+            color: #0d1117;
+            padding: 12px 20px;
+            border-radius: 14px;
+            margin-right: 15px;
+            font-size: 13px;
+            font-weight: 800;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: opacity 0.4s ease;
+            white-space: nowrap;
+            order: 1;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            min-width: 180px;
+        }
+        #notify-bubble.show { opacity: 1; transform: translateX(0); }
+        
+        /* Cursor effect */
+        #type-text::after {
+            content: "|";
+            animation: blink 0.7s infinite;
+            margin-left: 2px;
+            color: var(--gist-blue);
+        }
+        @keyframes blink { 50% { opacity: 0; } }
 
-<div class="grid">
+        /* 3. PERMANENT LAUNCHER */
+        #hub-launcher {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: var(--glass-dark);
+            color: #fff;
+            padding: 12px 22px;
+            border-radius: 50px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border: 1px solid rgba(255,255,255,0.1);
+            cursor: pointer;
+            display: none; 
+            z-index: 9998;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        }
+        #hub-launcher:hover { border-color: var(--gist-blue); color: var(--gist-blue); transform: translateY(-2px); }
 
-<div class="card">
-  <img src="https://cdn-icons-png.flaticon.com/512/4341/4341053.png" alt="Side Hustle Kit">
-  <h3>💼 Side Hustle Starter Kit</h3>
-  <p>Curated AI tools, templates, and resources for starting your digital business journey.</p>
-  <a href="https://debeatzgh1.github.io/Side-hustle-starter-kit-/" class="btn">Access Now</a>
-</div>
+        #comment-badge {
+            position: absolute;
+            top: -2px; right: -2px;
+            background: var(--notify-red);
+            padding: 4px 7px;
+            border-radius: 8px;
+            font-size: 9px;
+            color: #fff;
+            display: none;
+            font-weight: 900;
+        }
 
-<div class="card">
-  <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Online Business Ideas">
-  <h3>🌍 Online Business Tools</h3>
-  <p>Streamline your digital workflow with AI automation, guides, and monetization ideas.</p>
-  <a href="https://debeatzgh1.github.io/Home-/" class="btn">View Tools</a>
-</div>
+        /* MODAL OVERLAY */
+        #gist-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.92);
+            backdrop-filter: blur(8px);
+            display: none;
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-container { width: 95%; max-width: 900px; height: 85vh; background: #0d1117; border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid #30363d;}
+        iframe { width: 100%; flex-grow: 1; border: none; }
+    </style>
+</head>
+<body>
 
-<div class="card">
-  <img src="https://cdn-icons-png.flaticon.com/512/993/993928.png" alt="AI Guides">
-  <h3>🧠 AI Product Creation Guides</h3>
-  <p>Learn how to use AI prompts and automation to create, brand, and sell your products.</p>
-  <a href="https://debeatzgh1.github.io/Curated-Guides-for-Online-Business-AI-Product-Creation/" class="btn">Read Guides</a>
-</div>
+    <audio id="notify-sound" src="https://debeatzgh1.github.io/posts//"></audio>
 
-</div>
+    <div id="notification-wrapper">
+        <div id="notify-bubble">
+            <span id="type-text"></span>
+        </div>
+        <div id="gist-notifier" onclick="handleEngagement()">
+            <span id="comment-badge">UPDATE</span>
+            <svg width="26" height="26" viewbox="0 0 24 24" fill="none" stroke="#58a6ff" stroke-width="2.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+        </div>
+    </div>
 
----
+    <button id="hub-launcher" onclick="restoreFloatingButton()">
+        FAQS
+    </button>
 
-## 🎓 **Interactive Knowledge Quizzes**
+    <div id="gist-overlay">
+        <div class="modal-container">
+            <div class="modal-header" style="padding:15px 25px; color:#8b949e; display:flex; justify-content:space-between; background:#161b22; font-size: 11px; font-weight: bold; border-bottom: 1px solid #30363d;">
+                <span><i class="fab fa-github"></i> GIST_DISCUSSION_PORTAL & FAQS</span>
+                <button onclick="closeGist()" style="color:white; background:none; border:none; cursor:pointer; font-size:22px;">&times;</button>
+            </div>
+            <iframe id="gist-frame"></iframe>
+        </div>
+    </div>
 
-> Sharpen your mind and learn something new daily.
+    <script>
+        const wrapper = document.getElementById('notification-wrapper');
+        const bubble = document.getElementById('notify-bubble');
+        const badge = document.getElementById('comment-badge');
+        const launcher = document.getElementById('hub-launcher');
+        const notifier = document.getElementById('gist-notifier');
+        const sound = document.getElementById('notify-sound');
+        const typeTarget = document.getElementById('type-text');
 
-<div class="grid">
+        const message = "System: New Gist comment detected...";
 
-<div class="card">
-  <img src="https://cdn-icons-png.flaticon.com/512/4248/4248757.png" alt="Accountancy Quiz">
-  <h3>📘 Accountancy</h3>
-  <p>Master the principles of finance and accounting with interactive questions.</p>
-  <a href="https://quizzory.in/id/60f309a3f264f969c42cea13" class="btn">Start Quiz</a>
-</div>
+        function typeWriter(text, i = 0) {
+            if (i < text.length) {
+                typeTarget.innerHTML += text.charAt(i);
+                setTimeout(() => typeWriter(text, i + 1), 50);
+            }
+        }
 
-<div class="card">
-  <img src="https://cdn-icons-png.flaticon.com/512/3039/3039433.png" alt="Famous Personalities">
-  <h3>🌟 Famous Personalities</h3>
-  <p>Test your knowledge about global icons, inventors, and leaders.</p>
-  <a href="https://quizzory.in/id/60f3081695c1d3699de6d554" class="btn">Start Quiz</a>
-</div>
+        function checkNotification() {
+            const hasSeen = localStorage.getItem('gist_final_engaged');
+            if (!hasSeen) {
+                // Initial delay before alert
+                setTimeout(() => {
+                    bubble.classList.add('show');
+                    badge.style.display = 'block';
+                    notifier.classList.add('shake');
+                    typeWriter(message);
+                    
+                    // Unlock sound on first interaction
+                    document.addEventListener('mouseover', () => { sound.play().catch(()=>{}) }, {once: true});
 
-<div class="card">
-  <img src="https://cdn-icons-png.flaticon.com/512/2891/2891491.png" alt="Flashcards">
-  <h3>🎴 Flashcards</h3>
-  <p>Learn with smart digital flashcards to improve your retention and speed.</p>
-  <a href="https://beatzde4.blogspot.com/p/open-debeatzgh.html" class="btn">Open Flashcards</a>
-</div>
+                    // Auto-hide bubble after 7s
+                    setTimeout(() => { 
+                        bubble.classList.remove('show');
+                        notifier.classList.remove('shake');
+                    }, 7000);
+                }, 2500);
+            } else {
+                wrapper.style.display = 'none';
+                launcher.style.display = 'block';
+            }
+        }
 
-</div>
+        function handleEngagement() {
+            localStorage.setItem('gist_final_engaged', 'true');
+            document.getElementById('gist-frame').src = "https://mailchi.mp/dda1a453c7bd/ai-decoder";
+            document.getElementById('gist-overlay').style.display = 'flex';
+            
+            // Vanish animation
+            wrapper.style.opacity = '0';
+            wrapper.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                wrapper.style.display = 'none';
+                launcher.style.display = 'block'; 
+            }, 500);
+        }
 
----
+        function restoreFloatingButton() {
+            // FIXED: Removed the accidental copy-paste HTML block and targeted the correct portfolio path
+            document.getElementById('gist-frame').src = "https://debeatzgh1.github.io/Html-code-for-portfolio-/";
+            document.getElementById('gist-overlay').style.display = 'flex';
+        }
 
-## 💎 **Premium Access & Collaboration**
+        function closeGist() {
+            document.getElementById('gist-overlay').style.display = 'none';
+            document.getElementById('gist-frame').src = "";
+        }
 
-<div class="pricing">
-  <h2 align="center">🔥 Unlock Exclusive Benefits</h2>
-  <p align="center">Upgrade your experience — get access to pro templates, branding support, and advanced automation setups.</p>
-
-  <div class="grid">
-  
-  <div class="price-card">
-    <h2>Starter Access</h2>
-    <p class="price">¢50</p>
-    <p>Access premium guides, AI templates, and business idea kits.</p>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSec8llbmfgq_2cVxpdk0M9zi2BtNUT4_IjqFVkbM1RCApV3Gw/viewform?usp=publish-editor" class="btn">💳 Buy Now</a>
-  </div>
-
-  <div class="price-card">
-    <h2>Pro Creator Pack</h2>
-    <p class="price">¢100</p>
-    <p>Includes all starter features + personal brand website + AI prompts kit.</p>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSec8llbmfgq_2cVxpdk0M9zi2BtNUT4_IjqFVkbM1RCApV3Gw/viewform?embedded=true" class="btn">🛒 Purchase</a>
-  </div>
-
-  <div class="price-card">
-    <h2>Hire Me</h2>
-    <p class="price">Custom</p>
-    <p>Get personalized website setup, AI automation, or digital business strategy.</p>
-    <a href="https://www.socialcreator.com/debeatzgh/?s=314752" class="btn">📩 Contact Me</a>
-  </div>
-
-  </div>
-</div>
-
----
-
-## 💬 **About Debeatzgh**
-
-> I create **AI-powered resources**, **online tools**, and **digital business solutions** to help innovators and learners grow with technology.  
-> Whether you’re a **student**, **startup**, or **creator**, these projects are designed to inspire and empower you.
-
----
-
-<footer>
-  © 2025 <strong>Debeatzgh</strong> | Built with 💙 for creators, learners & entrepreneurs.  
-  <br>Follow more updates on [**Beatzde4 Blog**](https://beatzde4.blogspot.com/)
-</footer>
-lay:inline-block; padding:10px 16px; margin:4px; border-radius:999px; text-decoration:none; font-weight:600; border:1px solid #2563eb;">
-      🚀 View Live App
-    </a>
-    <a href="https://github.com/debeatzgh1/Personal-Portfolio-site-" target="_blank" rel="noopener"
-       style="display:inline-block; padding:10px 16px; margin:4px; border-radius:999px; text-decoration:none; font-weight:600; border:1px solid #111827;">
-      ⭐ Star this Repo
-    </a>
-  </p>
-</div>
-
-<hr/>
-
-<h2>Overview</h2>
-<p>
-  <strong>DebeatzGH</strong> helps beginners and creators build profitable digital assets:
-  blogs, affiliate funnels, AI-assisted content, and more. Explore tutorials, tools, and
-  ready-to-use components to speed up your workflow.
-</p>
-
-<h2>Features</h2>
-<ul>
-  <li><strong>AI & Tech Learning:</strong> Bite-sized guides for modern tools and workflows.</li>
-  <li><strong>Side-Hustle Playbooks:</strong> Practical steps to validate and launch ideas.</li>
-  <li><strong>Productivity Toolkit:</strong> Reusable widgets, templates, and scripts.</li>
-  <li><strong>Beginner-Friendly:</strong> Clear explanations, curated resources, and examples.</li>
-</ul>
-
-<h2>Quick Start</h2>
-<ol>
-  <li>Clone:
-    <pre><code>git clone https://github.com/debeatzgh1/Personal-Portfolio-site-</code></pre>
-  </li>
-  <li>Enter folder:
-    <pre><code>cd debeatzgh</code></pre>
-  </li>
-  <li>Install deps (adjust to your stack):
-    <pre><code># Node
-npm install
-npm run dev
-
-# or Python
-pip install -r requirements.txt
-python app.py</code></pre>
-  </li>
-  <li>Open in browser:
-    <pre><code>http://localhost:3000</code></pre>
-  </li>
-</ol>
-
-<h2>Project Links</h2>
-<ul>
-  <li>🌐 Live App: <a href="https://www.socialcreator.com/debeatzgh" target="_blank" rel="noopener">socialcreator.com/debeatzgh</a></li>
-  <li>🖼️ Thumbnail: <a href="https://debeatzgh.wordpress.com/wp-content/uploads/2025/08/designadigitalproductse-commerceonlinedeals3545265155247625100.jpg" target="_blank" rel="noopener">View image</a></li>
-</ul>
-
-<h2>Contributing</h2>
-<p>
-  Contributions are welcome! Open an issue for bugs or ideas. For changes, fork the repo,
-  create a feature branch, and submit a pull request.
-</p>
-
-<h2>License</h2>
-<p>
-  Released under the <a href="./LICENSE">MIT License</a>.
-</p>
-
-<hr/>
-
-<div align="center">
-  <p><em>If this project helps you, consider giving it a star. It really helps! ⭐</em></p>
-  <p>
-    <a href="https://www.socialcreator.com/debeatzgh/?s=314768" target="_blank" rel="noopener"
-       style="display:inline-block; padding:10px 16px; margin-top:6px; border-radius:10px; text-decoration:none; font-weight:600; border:1px solid #2563eb;">
-      PRODUCTS →
-    </a>
-  </p>
-</div>
+        window.onload = checkNotification;
+    </script>
+</body>
+</html>
